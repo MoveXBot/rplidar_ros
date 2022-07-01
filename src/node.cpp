@@ -78,7 +78,7 @@ void publish_scan(ros::Publisher *pub,
     scan_msg.range_min = 0.15;
     scan_msg.range_max = max_distance;//8.0;
 
-    scan_msg.intensities.resize(node_count);
+    // scan_msg.intensities.resize(node_count);
     scan_msg.ranges.resize(node_count);
     bool reverse_data = (!inverted && reversed) || (inverted && !reversed);
     if (!reverse_data) {
@@ -88,7 +88,7 @@ void publish_scan(ros::Publisher *pub,
                 scan_msg.ranges[i] = std::numeric_limits<float>::infinity();
             else
                 scan_msg.ranges[i] = read_value;
-            scan_msg.intensities[i] = (float) (nodes[i].quality >> 2);
+            // scan_msg.intensities[i] = (float) (nodes[i].quality >> 2);
         }
     } else {
         for (size_t i = 0; i < node_count; i++) {
@@ -97,9 +97,14 @@ void publish_scan(ros::Publisher *pub,
                 scan_msg.ranges[node_count-1-i] = std::numeric_limits<float>::infinity();
             else
                 scan_msg.ranges[node_count-1-i] = read_value;
-            scan_msg.intensities[node_count-1-i] = (float) (nodes[i].quality >> 2);
+            // scan_msg.intensities[node_count-1-i] = (float) (nodes[i].quality >> 2);
         }
     }
+
+    scan_msg.angle_min += 650 * scan_msg.angle_increment;
+    scan_msg.angle_max -= 800 * scan_msg.angle_increment;
+    scan_msg.ranges.erase(scan_msg.ranges.begin(),scan_msg.ranges.begin() + 650);
+    scan_msg.ranges.erase(scan_msg.ranges.end() - 800,scan_msg.ranges.end());
 
     pub->publish(scan_msg);
 }
@@ -319,6 +324,7 @@ int main(int argc, char * argv[]) {
         ROS_ERROR("Can not start scan: %08x!", op_result);
     }
 
+    // drv->setMotorSpeed(900);
     ros::Time start_scan_time;
     ros::Time end_scan_time;
     double scan_duration;

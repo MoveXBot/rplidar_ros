@@ -6,6 +6,5 @@ sudo rm   /etc/udev/rules.d/rplidar.rules
 echo " "
 echo "Restarting udev"
 echo ""
-sudo service udev reload
-sudo service udev restart
+sudo udevadm trigger
 echo "finish  delete"

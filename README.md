@@ -24,26 +24,46 @@ There're two ways to run rplidar ros package
 
 I. Run rplidar node and view in the rviz
 ------------------------------------------------------------
+```bash
 roslaunch rplidar_ros view_rplidar.launch (for RPLIDAR A1/A2)
-,
+```
+```bash
 roslaunch rplidar_ros view_rplidar_a3.launch (for RPLIDAR A3)
-,
+``` 
+```bash
 roslaunch rplidar_ros view_rplidar_s1.launch (for RPLIDAR S1)
-or
+``` 
+```bash 
 roslaunch rplidar_ros view_rplidar_s2.launch (for RPLIDAR S2)
-
+``` 
+```bash 
+roslaunch rplidar_ros view_rplidar_s2e.launch (for RPLIDAR S2E)
+``` 
+```bash
+roslaunch rplidar_ros view_rplidar_t1.launch (for SLAMTEC LPX T Serials)  
+``` 
 You should see rplidar's scan result in the rviz.
 
 II. Run rplidar node and view using test application
 ------------------------------------------------------------
+```bash
 roslaunch rplidar_ros rplidar.launch (for RPLIDAR A1/A2)
-,
+```
+```bash
 roslaunch rplidar_ros rplidar_a3.launch (for RPLIDAR A3)
-,
+```
+```bash 
 roslaunch rplidar_ros rplidar_s1.launch (for RPLIDAR S1)
-or
+```
+```bash 
 roslaunch rplidar_ros rplidar_s2.launch (for RPLIDAR S2)
-
+```
+```bash
+roslaunch rplidar_ros rplidar_s2e.launch (for RPLIDAR S2E)
+```
+```bash 
+roslaunch rplidar_ros rplidar_t1.launch (for SLAMTEC LPX T Serials)  
+```
 rosrun rplidar_ros rplidarNodeClient
 
 You should see rplidar's scan result in the console
